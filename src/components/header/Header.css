@@ -1,0 +1,40 @@
+.header-logo {
+    /* animation: App-logo-spin infinite 20s linear; */
+    margin: 2px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .logo {
+    float: left;
+  }
+
+  .headline {
+    float: right;
+  }
+
+.app-header {
+  background: linear-gradient(to right, blue, blueviolet);
+}
+.header-main {
+  text-align: center;
+}
+.search {
+  border: 2px solid;
+  border-radius: 25px;
+  /* width: 80%; */
+  float:left;
+}
+.search-wrapper {
+  width: 30%;
+  display: inline-block;
+}
+.search-btn {
+  /* width: 20%; */
+  float: right;
+}
+
+.search-btn {
+  content: '';
+  background: url("search.svg") no-repeat fixed center;
+}
