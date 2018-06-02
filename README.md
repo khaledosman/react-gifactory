@@ -1,3 +1,5 @@
+react redux demo app that loads gifs from gify api, can be used as builer plate for react/redux apps
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
