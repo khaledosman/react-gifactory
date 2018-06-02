@@ -28,6 +28,7 @@ class ExplorerContainer extends PureComponent {
 
   handleSearchChanged (event) {
     // event.persist()
+    console.log('search changed')
     this.triggerNewSearch(event.target.value)
   }
 
