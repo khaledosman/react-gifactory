@@ -21,6 +21,7 @@ const composeEnhancers = composeWithDevTools({
 
 const store = createStore(
   rootReducer,
+  /* preloadedState , */
   composeEnhancers(
     applyMiddleware(logger, ReduxThunk)
   )

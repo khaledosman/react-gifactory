@@ -11,7 +11,6 @@ class App extends PureComponent {
   }
 
   handleClick ({ q }) {
-    console.log('w00t', q.value)
     this.props.dispatch(clearResults())
     this.props.dispatch(fetchData({
       q: q.value
@@ -28,6 +27,6 @@ class App extends PureComponent {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({ dispatch })
+  null,
+  null
 )(App)
