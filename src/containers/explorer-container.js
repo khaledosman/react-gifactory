@@ -18,7 +18,7 @@ class ExplorerContainer extends PureComponent {
       offset: 0
     }
   }
-  componentWillMount () {
+  componentDidMount () {
     this.props.fetchData({
       q: this.state.q,
       limit: this.state.limit,
