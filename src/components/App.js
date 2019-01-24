@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import Header from './header/Header'
 import ExplorerContainer from '../containers/explorer-container'
 import { fetchData, clearResults } from '../actions/explorer-actions'
-class App extends Component {
+class App extends PureComponent {
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)

@@ -7,7 +7,7 @@ export default class Card extends PureComponent {
 
   render () {
     return (
-      <img style={{ width: '33%', height: '33%' }} src={this.props.item.images.downsized_large.url} />
+      <img style={{ width: '33%', height: '33%' }} alt='gif' src={this.props.item.images.downsized_large.url} />
     )
   }
 }
