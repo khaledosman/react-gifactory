@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 export default class LoadMoreButton extends PureComponent {
   // constructor (props) {
@@ -7,7 +7,7 @@ export default class LoadMoreButton extends PureComponent {
 
   render () {
     return (
-      <button style={{'textAlign': 'center'}} className='btn btn-primary' onClick={this.props.onClick}> load more</button>
+      <button style={{ 'textAlign': 'center' }} className='btn btn-primary' onClick={this.props.onClick}> load more</button>
     )
   }
 }

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 // import {Col} from 'react-bootstrap'
 import Card from '../Card/Card'
 

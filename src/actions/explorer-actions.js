@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export function fetchData ({q = 'cats', limit = 12, offset = 0}) {
+export function fetchData ({ q = 'cats', limit = 12, offset = 0 }) {
   return function (dispatch) {
     dispatch(fetchDataPending())
     axios.get('https://api.giphy.com/v1/gifs/search', {

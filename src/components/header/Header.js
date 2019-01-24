@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import search from './search.svg'
 import './Header.css'
@@ -10,7 +10,7 @@ export default class Header extends PureComponent {
   }
 
   handleClick () {
-    this.props.onClick({q: this.search})
+    this.props.onClick({ q: this.search })
   }
 
   render () {
@@ -23,7 +23,7 @@ export default class Header extends PureComponent {
         <div className='header-main'>
           <h1><b>One place for all things GIFs!</b></h1>
           <div className='search-wrapper'>
-            <input className='search' type='search' style={{width: '100%'}} placeholder='Search for cats, moods and such...' ref={(input) => { this.search = input }} />
+            <input className='search' type='search' style={{ width: '100%' }} placeholder='Search for cats, moods and such...' ref={(input) => { this.search = input }} />
             <button className='search-btn' onClick={this.handleClick}> Search </button>
           </div>
         </div>

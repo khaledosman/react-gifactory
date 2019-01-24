@@ -1,10 +1,10 @@
 import Explorer from '../components/explorer/Explorer'
 import ExplorerSearch from '../components/search/ExplorerSearch'
 import LoadMoreButton from '../components/loadMore/LoadMoreButton'
-import React, {PureComponent} from 'react'
-import {fetchData, clearResults} from '../actions/explorer-actions'
-import {connect} from 'react-redux'
-import {debounce} from 'throttle-debounce'
+import React, { PureComponent } from 'react'
+import { fetchData, clearResults } from '../actions/explorer-actions'
+import { connect } from 'react-redux'
+import { debounce } from 'throttle-debounce'
 
 class ExplorerContainer extends PureComponent {
   constructor (props) {
@@ -52,7 +52,7 @@ class ExplorerContainer extends PureComponent {
         offset: 0
       }
       this.props.fetchData(newState)
-      return {...previousState, ...newState}
+      return { ...previousState, ...newState }
     }
   }
   fetchNextSet () {
@@ -64,7 +64,7 @@ class ExplorerContainer extends PureComponent {
         limit,
         offset
       })
-      return {...previousState, limit, offset}
+      return { ...previousState, limit, offset }
     }
   }
 
@@ -76,7 +76,7 @@ class ExplorerContainer extends PureComponent {
           results={this.props.results}
           isBusy={this.props.isBusy}
           error={this.props.error}
-          />
+        />
         <LoadMoreButton onClick={this.handleLoadMoreClicked} />
       </main>
     )
