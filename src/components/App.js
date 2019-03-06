@@ -10,6 +10,15 @@ class App extends PureComponent {
     this.handleClick = this.handleClick.bind(this)
   }
 
+  componentDidMount () {
+    // ga('send', {
+    //   hitType: 'event',
+    //   eventCategory: 'PageView',
+    //   eventAction: 'Viewed',
+    //   eventLabel: window.location.href
+    // })
+  }
+
   handleClick ({ q }) {
     this.props.dispatch(clearResults())
     this.props.dispatch(fetchData({
