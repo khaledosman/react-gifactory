@@ -1,13 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
-export default class Card extends PureComponent {
-  render () {
-    return (
-      <img style={{ width: '33%', height: '33%' }} alt='gif' src={this.props.item.images.downsized_large.url} />
-    )
-  }
+
+function Card (props) {
+  return (
+    <img style={{ width: '33%', height: '33%' }} alt='gif' src={props.item.images.downsized_medium.url} load='lazy' />
+  )
 }
 
 Card.propTypes = {
   item: PropTypes.object
 }
+
+export default memo(Card)

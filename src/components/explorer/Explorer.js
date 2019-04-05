@@ -1,32 +1,20 @@
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 // import {Col} from 'react-bootstrap'
 import Card from '../Card/Card'
 
-export default class Explorer extends PureComponent {
-  constructor (props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
+function Explorer (props) {
+  const handleClick = () => {
+    props.handleClick()
   }
 
-  handleClick () {
-    this.props.handleClick()
-  }
-
-  render () {
-    const results = this.props.results.map(result => {
-      return (
-        <Card key={result.id} item={result} />
-      )
-    })
-    return (
-      <section>
-        <ul>{results}</ul>
-        <h2>{this.props.isBusy}</h2>
-        <h2>{this.props.error}</h2>
-      </section>
-    )
-  }
+  return (
+    <section>
+      <ul>{props.results.map(result => <Card key={result.id} item={result} onClick={handleClick} />)}</ul>
+      <h2>{props.isBusy}</h2>
+      <h2>{props.error}</h2>
+    </section>
+  )
 }
 
 Explorer.defaultProps = {
@@ -44,3 +32,5 @@ Explorer.propTypes = {
   error: PropTypes.string,
   handleClick: PropTypes.func
 }
+
+export default memo(Explorer)

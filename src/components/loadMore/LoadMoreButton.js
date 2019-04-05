@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
-export default class LoadMoreButton extends PureComponent {
-  render () {
-    return (
-      <button style={{ 'textAlign': 'center' }} className='btn btn-primary' onClick={this.props.onClick}> load more</button>
-    )
-  }
+
+function LoadMoreButton (props) {
+  return (
+    <button style={{ 'textAlign': 'center' }} className='btn btn-primary' onClick={props.onClick}> load more</button>
+  )
 }
 
 LoadMoreButton.propTypes = {
   onClick: PropTypes.func
 }
+export default memo(LoadMoreButton)

@@ -1,86 +1,57 @@
 import Explorer from '../components/explorer/Explorer'
 import ExplorerSearch from '../components/search/ExplorerSearch'
 import LoadMoreButton from '../components/loadMore/LoadMoreButton'
-import React, { PureComponent } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { fetchData, clearResults } from '../actions/explorer-actions'
 import { connect } from 'react-redux'
 import { debounce } from 'throttle-debounce'
 
-class ExplorerContainer extends PureComponent {
-  constructor (props) {
-    super(props)
-    this.handleSearchChanged = this.handleSearchChanged.bind(this)
-    this.triggerNewSearch = debounce(500, this.triggerNewSearch.bind(this))
-    this.handleLoadMoreClicked = this.handleLoadMoreClicked.bind(this)
-    this.state = {
-      q: 'cats',
-      limit: 12,
-      offset: 0
-    }
-  }
-  componentDidMount () {
-    this.props.fetchData({
-      q: this.state.q,
-      limit: this.state.limit,
-      offset: this.state.offset
-    })
+function ExplorerContainer (props) {
+  const [q, setQ] = useState('cats')
+  const [limit] = useState(12)
+  const [offset, setOffset] = useState(0)
+
+  const triggerFn = (query) => {
+    console.log('searchChanged', query)
+    props.clearResults()
+
+    setQ(q)
+    setOffset(0)
   }
 
-  handleSearchChanged (event) {
+  const triggerNewSearch = debounce(500, triggerFn)
+
+  useEffect(() => {
+    props.fetchData({
+      q: q,
+      limit: limit,
+      offset: offset
+    })
+  }, [q, limit, offset])
+
+  const handleSearchChanged = (newSearch) => {
     // event.persist()
     console.log('search changed')
-    this.triggerNewSearch(event.target.value)
+    triggerNewSearch(newSearch)
   }
 
-  triggerNewSearch (query) {
-    console.log('searchChanged', query)
-    this.props.clearResults()
-    this.setState(this.fetchNewQuery(query))
-  }
-
-  handleLoadMoreClicked (event) {
-    this.setState(this.fetchNextSet())
+  const handleLoadMoreClicked = (event) => {
+    setOffset(offset + limit)
 
     console.log('loadMoreClicked', event)
   }
 
-  fetchNewQuery (query) {
-    return (previousState, currentProps) => {
-      const newState = {
-        q: query,
-        limit: 12,
-        offset: 0
-      }
-      this.props.fetchData(newState)
-      return { ...previousState, ...newState }
-    }
-  }
-  fetchNextSet () {
-    return (previousState, currentProps) => {
-      const limit = previousState.limit
-      const offset = previousState.offset + previousState.limit
-      this.props.fetchData({
-        q: this.state.q,
-        limit,
-        offset
-      })
-      return { ...previousState, limit, offset }
-    }
-  }
-
-  render () {
-    return (
-      <main>
-        <ExplorerSearch onSearchChanged={this.handleSearchChanged} />
-        <Explorer
-          results={this.props.results}
-          isBusy={this.props.isBusy}
-          error={this.props.error}
-        />
-        <LoadMoreButton onClick={this.handleLoadMoreClicked} />
-      </main>
-    )
-  }
+  return (
+    <main>
+      <ExplorerSearch onSearchChanged={handleSearchChanged} />
+      <Explorer
+        results={props.results}
+        isBusy={props.isBusy}
+        error={props.error}
+      />
+      <LoadMoreButton onClick={handleLoadMoreClicked} />
+    </main>
+  )
 }
 
 const mapStateToProps = (state) => {
@@ -96,4 +67,4 @@ const mapDispatchToProps = dispatch => ({
   clearResults: () => dispatch(clearResults())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExplorerContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(memo(ExplorerContainer))
