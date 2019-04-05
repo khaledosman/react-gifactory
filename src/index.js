@@ -7,7 +7,7 @@ import rootReducer from './reducers'
 import logger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
 import App from './components/App'
-import registerServiceWorker from './registerServiceWorker'
+import * as serviceWorker from './serviceWorker'
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -36,4 +36,4 @@ ReactDOM.render(
   ,
   document.getElementById('root'))
 
-registerServiceWorker()
+serviceWorker.register({})
