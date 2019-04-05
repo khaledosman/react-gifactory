@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import Header from './header/Header'
@@ -6,7 +6,9 @@ import ExplorerContainer from '../containers/explorer-container'
 import { fetchData, clearResults } from '../actions/explorer-actions'
 
 function App (props) {
+  const [q, setQ] = useState('')
   const handleClick = ({ q }) => {
+    setQ(q)
     props.dispatch(clearResults())
     props.dispatch(fetchData({ q }))
   }
@@ -14,7 +16,7 @@ function App (props) {
   return (
     <div>
       <Header onClick={handleClick} />
-      <ExplorerContainer />
+      <ExplorerContainer q={q} />
     </div>
   )
 }

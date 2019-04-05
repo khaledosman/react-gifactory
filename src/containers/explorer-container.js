@@ -4,41 +4,29 @@ import LoadMoreButton from '../components/loadMore/LoadMoreButton'
 import React, { memo, useState, useEffect } from 'react'
 import { fetchData, clearResults } from '../actions/explorer-actions'
 import { connect } from 'react-redux'
-import { debounce } from 'throttle-debounce'
 
 function ExplorerContainer (props) {
-  const [q, setQ] = useState('cats')
+  const [q, setQ] = useState(props.q || 'cats')
   const [limit] = useState(12)
   const [offset, setOffset] = useState(0)
 
-  const triggerFn = (query) => {
-    console.log('searchChanged', query)
-    props.clearResults()
-
-    setQ(q)
-    setOffset(0)
-  }
-
-  const triggerNewSearch = debounce(500, triggerFn)
-
   useEffect(() => {
     props.fetchData({
-      q: q,
-      limit: limit,
-      offset: offset
+      q,
+      limit,
+      offset
     })
   }, [q, limit, offset])
 
   const handleSearchChanged = (newSearch) => {
-    // event.persist()
-    console.log('search changed')
-    triggerNewSearch(newSearch)
+    console.log('searchChanged', newSearch)
+    props.clearResults()
+    setQ(newSearch)
+    setOffset(0)
   }
 
   const handleLoadMoreClicked = (event) => {
     setOffset(offset + limit)
-
-    console.log('loadMoreClicked', event)
   }
 
   return (
