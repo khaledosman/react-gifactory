@@ -9,14 +9,15 @@ function ExplorerContainer (props) {
   const [q, setQ] = useState(props.q || 'cats')
   const [limit] = useState(12)
   const [offset, setOffset] = useState(0)
+  const { fetchData } = props
 
   useEffect(() => {
-    props.fetchData({
+    fetchData({
       q,
       limit,
       offset
     })
-  }, [q, limit, offset])
+  }, [q, limit, offset, fetchData])
 
   const handleSearchChanged = (newSearch) => {
     console.log('searchChanged', newSearch)
