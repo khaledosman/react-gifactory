@@ -55,5 +55,6 @@ const mapDispatchToProps = dispatch => ({
   fetchData: (opts) => dispatch(fetchData(opts)),
   clearResults: () => dispatch(clearResults())
 })
+ExplorerContainer.whyDidYouRender = true
 
 export default connect(mapStateToProps, mapDispatchToProps)(memo(ExplorerContainer))

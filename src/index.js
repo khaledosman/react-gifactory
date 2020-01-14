@@ -13,6 +13,9 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 if (process.env.NODE_ENV !== 'production') {
   const { whyDidYouUpdate } = require('why-did-you-update')
   whyDidYouUpdate(React)
+
+  const whyDidYouRender = require('@welldone-software/why-did-you-render')
+  whyDidYouRender(React)
 }
 
 const composeEnhancers = composeWithDevTools({

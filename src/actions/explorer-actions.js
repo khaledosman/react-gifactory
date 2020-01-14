@@ -2,7 +2,10 @@ import axios from 'axios'
 
 export function fetchData ({ q = 'cats', limit = 12, offset = 0 }) {
   return function (dispatch) {
-    dispatch(fetchDataPending())
+    dispatch({
+      type: 'FETCH_DATA_PENDING',
+      payload: null
+    })
     axios.get('https://api.giphy.com/v1/gifs/search', {
       params: {
         api_key: '838496faca184b1a9686d0c54d5f463d',
@@ -19,13 +22,6 @@ export function fetchData ({ q = 'cats', limit = 12, offset = 0 }) {
         console.log(error)
         dispatch(fetchDataError(error.message))
       })
-  }
-}
-
-function fetchDataPending () {
-  return {
-    type: 'FETCH_DATA_PENDING',
-    payload: null
   }
 }
 
