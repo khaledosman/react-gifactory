@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function LoadMoreButton (props) {
   return (
-    <button style={{ 'textAlign': 'center' }} className='btn btn-primary' onClick={props.onClick}> load more</button>
+    <button style={{ textAlign: 'center' }} className='btn btn-primary' onClick={props.onClick}> load more</button>
   )
 }
 

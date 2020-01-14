@@ -1,9 +1,9 @@
 import React, { memo, useState } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import Header from './header/Header'
-import ExplorerContainer from '../containers/explorer-container'
-import { fetchData, clearResults } from '../actions/explorer-actions'
+import Header from './components/header/Header'
+import ExplorerContainer from './containers/explorer-container'
+import { fetchData, clearResults } from './actions/explorer-actions'
 
 function App (props) {
   const [q, setQ] = useState('')

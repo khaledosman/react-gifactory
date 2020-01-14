@@ -6,16 +6,16 @@ import { applyMiddleware, createStore } from 'redux'
 import rootReducer from './reducers'
 import logger from 'redux-logger'
 import ReduxThunk from 'redux-thunk'
-import App from './components/App'
+import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 
 if (process.env.NODE_ENV !== 'production') {
-  const { whyDidYouUpdate } = require('why-did-you-update')
-  whyDidYouUpdate(React)
+  // const { whyDidYouUpdate } = require('why-did-you-update')
+  // whyDidYouUpdate(React)
 
-  const whyDidYouRender = require('@welldone-software/why-did-you-render')
-  whyDidYouRender(React)
+  // const whyDidYouRender = require('@welldone-software/why-did-you-render')
+  // whyDidYouRender(React)
 }
 
 const composeEnhancers = composeWithDevTools({
@@ -35,8 +35,8 @@ ReactDOM.render(
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
-  ,
-  document.getElementById('root'))
+  </React.StrictMode>,
+  document.getElementById('root')
+)
 
 serviceWorker.register({})
