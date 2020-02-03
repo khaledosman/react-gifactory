@@ -5,8 +5,9 @@ import React, { memo, useState, useEffect } from 'react'
 import { fetchData, clearResults } from '../actions/explorer-actions'
 import { connect } from 'react-redux'
 
+let timeout
 function ExplorerContainer (props) {
-  const [q, setQ] = useState(props.q || 'cats')
+  const [q, setQ] = useState(props.q || 'javascript')
   const [limit] = useState(12)
   const [offset, setOffset] = useState(0)
   const { fetchData } = props
@@ -20,10 +21,15 @@ function ExplorerContainer (props) {
   }, [q, limit, offset, fetchData])
 
   const handleSearchChanged = (newSearch) => {
-    console.log('searchChanged', newSearch)
-    props.clearResults()
-    setQ(newSearch)
-    setOffset(0)
+    if (timeout) {
+      window.clearTimeout(timeout)
+    }
+    timeout = setTimeout(() => {
+      console.log('searchChanged', newSearch)
+      props.clearResults()
+      setQ(newSearch)
+      setOffset(0)
+    }, 1000)
   }
 
   const handleLoadMoreClicked = (event) => {
