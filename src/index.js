@@ -14,8 +14,10 @@ if (process.env.NODE_ENV !== 'production') {
   // const { whyDidYouUpdate } = require('why-did-you-update')
   // whyDidYouUpdate(React)
 
-  // const whyDidYouRender = require('@welldone-software/why-did-you-render')
-  // whyDidYouRender(React)
+  const whyDidYouRender = require('@welldone-software/why-did-you-render')
+  whyDidYouRender(React, {
+    include: [/.*/]
+  })
 }
 
 const composeEnhancers = composeWithDevTools({
@@ -30,13 +32,13 @@ const store = createStore(
   )
 )
 
-ReactDOM.createRoot(document.getElementById('root'))
+ReactDOM
   .render(
     <React.StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
-    </React.StrictMode>
+    </React.StrictMode>, document.getElementById('root')
   )
 
 serviceWorker.register({})
